@@ -16,8 +16,16 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @yield('styles')
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Styles Recipes -->
+    <link href="{{ asset('css/recipes.css') }}" rel="stylesheet">
+
+    <!-- Boostrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
     <div id="app">
@@ -58,6 +66,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profiles.show', ['profile' => Auth::user()->id]) }}">
+                                        {{ 'View profile' }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('recipes.index') }}">
+                                        {{ 'View recipes' }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -87,5 +101,7 @@
             </div>
         </div>
     </div>
+
+    @yield('scripts')
 </body>
 </html>

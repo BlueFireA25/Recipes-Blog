@@ -42,4 +42,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Event that is executed when a user is created
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Assign profile once a new user has been created
+        static::created(function($user) {
+            $user->profile()->create();
+        });
+    }
+
+    // Relation 1:n of User to Recipes
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
+
+    // Relation 1:1 of User and profile
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
