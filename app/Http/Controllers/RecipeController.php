@@ -72,8 +72,8 @@ class RecipeController extends Controller
         $route_image = $request['image']->store('upload-recipes', 'public');
 
         // Resize image
-        $img = Image::make(public_path("/storage/{$route_image}"))->fit(1000, 550);
-        $img->save();
+        // $img = Image::make(public_path("/storage/{$route_image}"))->fit(1000, 550);
+        // $img->save();
 
         // Store in DB (no models)
         // DB::table('recipes')->insert([

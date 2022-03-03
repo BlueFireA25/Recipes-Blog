@@ -2,6 +2,15 @@ trix-editor{
     min-height: 400px;
 }
 
+.recipe-show-image {
+  width: 20px;
+}
+
+.latest-recipe-image {
+  width: 250px;
+  height: 250px;
+}
+
 .like-btn {
   display: inline-block;
   Cursor: pointer;

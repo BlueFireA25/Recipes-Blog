@@ -27,7 +27,7 @@
         <div class="owl-carousel owl-theme">
             @foreach($newsRecipes as $newRecipe)
                 <div class="card">
-                    <img src="/storage/{{ $newRecipe->image }}" alt="Recipe Image" class="card-img-top">
+                    <img src="/storage/{{ $newRecipe->image }}" alt="Recipe Image" class="card-img-top latest-recipe-image">
                     
                     <div class="card-body">
                         <h3>{{ Str::title($newRecipe->title) }}</h3>
