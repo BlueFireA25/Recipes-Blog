@@ -28,4 +28,10 @@ class Recipe extends Model
     {
         return $this->belongsTo(User::class, 'user_id'); // FK in this table
     }
+
+    // Likes that a recipe has received
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes_recipe');
+    }
 }

@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('buttons')
-    <a href="{{ route('recipes.index') }}" class="btn btn-outline-primary mr-2 text-uppercase font-weight-bold">
-        <i class="bi bi-caret-left-fill"></i> Go Back
-    </a>
+@section('scripts')
+    <!-- Heart Button -->
+    <script src="{{ asset('js/recipes.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -17,12 +16,17 @@
         <div class="recipe__goal">
             <p>
                 <span class="font-weight-bold text-primary">Written in:</span>
-                {{ $recipe->category->name }}
+                <a class="text-dark" href="{{ route('categories.show', ['categoryRecipe' => $recipe->category->id]) }}">
+                    {{ $recipe->category->name }}
+                </a>
+                
             </p>
 
             <p>
                 <span class="font-weight-bold text-primary">Author:</span>
-                {{ $recipe->author->name }}
+                <a class="text-dark" href="{{ route('profiles.show', ['profile' => $recipe->author->id]) }}">
+                    {{ $recipe->author->name }}
+                </a>
             </p>
 
             <p>
@@ -45,6 +49,12 @@
 
                 {!! $recipe->preparation !!}
             </div>
+
+            <div class="justify-content-center row text-center">
+                <like-button recipe-id="{{ $recipe->id }}" like="{{ $like }}" likes="{{ $likes }}">
+                </like-button>
+            </div>
+
         </div>
     </article>
 @endsection

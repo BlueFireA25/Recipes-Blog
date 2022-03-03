@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import 'owl.carousel';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -27,7 +28,7 @@ window.Vue = require('vue').default;
 Vue.use(VueSweetalert2);
 Vue.component('date-recipe', require('./components/DateRecipe.vue').default);
 Vue.component('delete-recipe', require('./components/DeleteRecipe.vue').default);
-
+Vue.component('like-button', require('./components/LikeButton.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -40,3 +41,24 @@ Vue.config.ignoredElements = ["trix-editor"];
 const app = new Vue({
     el: '#app',
 });
+
+jQuery(document).ready(function(){
+    jQuery('.owl-carousel').owlCarousel({
+        margin: 10,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        responsive: {
+            0 : {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    });
+}); 
+ 

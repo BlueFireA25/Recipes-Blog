@@ -35,6 +35,24 @@
         <div class="col-12 mt-4 justify-content-center d-flex">
             {{ $recipes->links() }}
         </div>
+
+        <h2 class="text-center my-5">Recipes you like</h2>
+        <div class="col-md-10 mx-auto bg-white p-3">
+
+            @if(count($user->iLike) > 0)
+                <ul class="list-group">
+                    @foreach($user->iLike as $recipe)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <p>{{ $recipe->title }}</p>
+
+                            <a class="btn btn-outline-success text-uppercase font-weight-bold" href="{{ route('recipes.show', $recipe->id) }}">View</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="text-center">You don't have any saved recipes yet. Like the recipes and they will appear here.</p>
+            @endif
+        </div>
     </div>
 
 @endsection

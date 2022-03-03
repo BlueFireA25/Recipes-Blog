@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <input type="submit" class="btn btn-primary" value="Add Recipe">
+                    <input type="submit" class="btn btn-primary" value="Edit Recipe">
                 </div>
             </form>
         </div>

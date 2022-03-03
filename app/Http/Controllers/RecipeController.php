@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\CategoryRecipe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class RecipeController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'show']);
+        $this->middleware('auth', ['except' => ['show', 'search']]);
     }
 
     /**
@@ -25,13 +26,14 @@ class RecipeController extends Controller
     {
         // $recipes = auth()->user()->recipes;
 
-        $user = auth()->user()->id;
+        $user = auth()->user();
 
         // Recipes with pagination
-        $recipes = Recipe::where('user_id', $user)->paginate(2);
+        $recipes = Recipe::where('user_id', $user->id)->paginate(2);
 
         return view('recipes.index')
-            ->with('recipes', $recipes);
+            ->with('recipes', $recipes)
+            ->with('user', $user);
     }
 
     /**
@@ -69,6 +71,10 @@ class RecipeController extends Controller
         // Get image path
         $route_image = $request['image']->store('upload-recipes', 'public');
 
+        // Resize image
+        $img = Image::make(public_path("/storage/{$route_image}"))->fit(1000, 550);
+        $img->save();
+
         // Store in DB (no models)
         // DB::table('recipes')->insert([
         //     'title' => $data['title'],
@@ -100,7 +106,13 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('recipes.show', compact('recipe'));
+        // Get if the current user likes the recipe is authenticated
+        $like = (auth()->user()) ? auth()->user()->iLike->contains($recipe->id) : false;
+
+        // Pass the amount of likes to the visit
+        $likes = $recipe->likes->count();
+
+        return view('recipes.show', compact('recipe', 'like', 'likes'));
     }
 
     /**
@@ -178,5 +190,15 @@ class RecipeController extends Controller
         $recipe->delete();
 
         return redirect()->route('recipes.index');
+    }
+
+    public function search(Request $request) 
+    {
+        $search = $request->get('search');
+        
+        $recipes = Recipe::where('title', 'like', '%' . $search . '%')->paginate(10);
+        $recipes->appends(['search' => $search]);
+
+        return view('searches.show', compact('recipes', 'search'));
     }
 }
