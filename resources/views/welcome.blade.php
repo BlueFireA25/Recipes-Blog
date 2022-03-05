@@ -13,6 +13,7 @@
                         Find a recipe for your next meal
                     </p>
                     <input type="search" name="search" class="form-control" placeholder="Search Recipe">
+                    <span class="text-white"><b> (All recipes have a sample image, as heroku does not store images) </b></span>
                 </div>
             </div>
         </form>
@@ -27,7 +28,8 @@
         <div class="owl-carousel owl-theme">
             @foreach($newsRecipes as $newRecipe)
                 <div class="card">
-                    <img src="/storage/{{ $newRecipe->image }}" alt="Recipe Image" class="card-img-top latest-recipe-image">
+                    <img src="/images/recipe_demo.jpg" alt="Recipe Image" class="card-img-top latest-recipe-image">
+                    {{-- <img src="/storage/{{ $newRecipe->image }}" alt="Recipe Image" class="card-img-top latest-recipe-image"> --}}
                     
                     <div class="card-body">
                         <h3>{{ Str::title($newRecipe->title) }}</h3>

@@ -73,11 +73,12 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="image">Choose the image</label>
+                    <label for="image">Choose the image <b> (This is a test image, as heroku does not store the images) </b></label>
                     <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                     <div class="mt-4">
                         <p>Current Image:</p>
-                        <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" width="300px">
+                        <img src="/images/recipe_demo.jpg" alt="Recipe Image" width="300px">
+                        {{-- <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" width="300px"> --}}
                     </div>
 
                     @error('image')

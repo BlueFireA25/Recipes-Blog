@@ -10,7 +10,8 @@
         <h1 class="text-center mb-4">{{ $recipe->title }}</h1>
 
         <div class="image__recipe">
-            <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" class="w-100">
+            <img src="/images/recipe_demo.jpg" alt="Recipe Image" class="w-100">
+            {{-- <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" class="w-100"> --}}
         </div>
 
         <div class="recipe__goal">

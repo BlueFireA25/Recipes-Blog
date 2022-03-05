@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-md-5">
                 @if( $profile->image )
-                    <img src="/storage/{{ $profile->image }}" class="w-75 h-75 rounded-circle" alt="Profile image">
+                    <img src="/images/profile_demo.png" class="w-75 h-75 rounded-circle" alt="Profile image">
+                    {{-- <img src="/storage/{{ $profile->image }}" class="w-75 h-75 rounded-circle" alt="Profile image"> --}}
                 @endif
             </div>
             <div class="col-md-7 mt-5 mt-md-0">
@@ -32,7 +33,8 @@
                 @foreach($recipes as $recipe)
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="/storage/{{ $recipe->image }}" class="card-img-top" alt="Recipe image">
+                            <img src="/images/recipe_demo.jpg" class="card-img-top" alt="Recipe image">
+                            {{-- <img src="/storage/{{ $recipe->image }}" class="card-img-top" alt="Recipe image"> --}}
                             <div class="card-body">
                                 <h3>{{ $recipe->title }}</h3>
                                 <a href="{{ route('recipes.show', ['recipe' => $recipe->id]) }}" class="btn btn-primary d-block mt-4 text-uppercase font-weight-bold">View Recipe</a>

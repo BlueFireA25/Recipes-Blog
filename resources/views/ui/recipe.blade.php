@@ -1,6 +1,7 @@
 <div class="col-md-4 mt-4">
     <div class="card shadow">
-        <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" class="card-img-top">
+        <img src="/images/recipe_demo.jpg" alt="Recipe Image" class="card-img-top">
+        {{-- <img src="/storage/{{ $recipe->image }}" alt="Recipe Image" class="card-img-top"> --}}
         <div class="card-body">
             <h3 class="card-title">{{ $recipe->title }}</h3>
         

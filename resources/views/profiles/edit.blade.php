@@ -56,13 +56,14 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="image">Your image</label>
+                    <label for="image">Your image <b> (This is a test image, as heroku does not store the images) </b> </label>
                     <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                     
                     @if( $profile->image )
                         <div class="mt-4">
                             <p>Current Image:</p>
-                            <img src="/storage/{{ $profile->image }}" alt="Recipe Image" width="300px">
+                            <img src="/images/profile_demo.png" alt="Recipe Image" width="300px">
+                            {{-- <img src="/storage/{{ $profile->image }}" alt="Recipe Image" width="300px"> --}}
                         </div>
 
                         @error('image')
